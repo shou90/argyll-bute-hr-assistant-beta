@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argyll & Bute HR Assistant - Beta | My Council Works</title>
+    <meta name="description" content="Beta testing environment for Argyll & Bute Council's AI-powered HR Assistant">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f7fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .council-logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1e3a8a;
+            font-size: 14px;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-text p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .beta-banner {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            color: white;
+            text-align: center;
+            padding: 0.75rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .hero-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .beta-status {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .beta-status::before {
+            content: "🧪";
+            margin-right: 0.5rem;
+        }
+
+        .content-section {
+            padding: 2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .info-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .info-card p {
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .assistant-info {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .assistant-info h3 {
+            color: #0369a1;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chat-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+        }
+
+        .example-queries {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .query-example {
+            background: #f1f5f9;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #475569;
+        }
+
+        .beta-disclaimer {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .beta-disclaimer h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .beta-disclaimer p {
+            color: #92400e;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .hero-section h2 {
+                font-size: 2rem;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="council-logo">A&B</div>
+            <div class="header-text">
+                <h1>My Council Works</h1>
+                <p>Argyll & Bute Council Staff Portal</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="beta-banner">
+        🧪 BETA VERSION - This is a testing environment for the new HR Assistant
+    </div>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="hero-section">
+                <div class="beta-status">Beta Testing Phase</div>
+                <h2>Argyll & Bute</h2>
+                <p class="subtitle">Conversational AI Assistant for HR</p>
+                <p>Experience our new AI-powered HR assistant designed to provide instant support and guidance for all your human resources questions and needs.</p>
+            </div>
+
+            <div class="content-section">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🎯 What This Assistant Can Help With</h3>
+                        <ul class="feature-list">
+                            <li>HR policies and procedures</li>
+                            <li>Leave requests and entitlements</li>
+                            <li>Benefits and pension information</li>
+                            <li>Training and development opportunities</li>
+                            <li>Workplace policies and guidelines</li>
+                            <li>Contact information for HR services</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>⚡ Key Features</h3>
+                        <ul class="feature-list">
+                            <li>24/7 availability for instant responses</li>
+                            <li>Natural language conversation</li>
+                            <li>Council-specific HR knowledge</li>
+                            <li>Secure and confidential</li>
+                            <li>Mobile-friendly interface</li>
+                            <li>Escalation to human HR team when needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="assistant-info">
+                    <h3>🤖 Try the HR Assistant</h3>
+                    <p>The assistant is now active and ready to help with your HR questions. Click the chat widget to start a conversation!</p>
+                    
+                    <div class="chat-preview">
+                        <p><strong>Sample Questions to Try:</strong></p>
+                        <div class="example-queries">
+                            <div class="query-example">"What is the sick leave policy?"</div>
+                            <div class="query-example">"How do I request annual leave?"</div>
+                            <div class="query-example">"What benefits am I entitled to?"</div>
+                            <div class="query-example">"Who do I contact about my pension?"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="beta-disclaimer">
+                    <h4>⚠️ Beta Testing Notice</h4>
+                    <p><strong>This is a beta version for testing purposes.</strong> While we work to ensure accuracy, please verify important information with the HR team. Your feedback helps us improve the assistant before full deployment. For urgent HR matters, please contact the HR team directly.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>📞 Need Human Support?</h3>
+                    <p><strong>HR Service Centre:</strong> <a href="mailto:HRServiceCentre@argyll-bute.gov.uk">HRServiceCentre@argyll-bute.gov.uk</a></p>
+                    <p><strong>General HR Enquiries:</strong> <a href="mailto:ihr@argyll-bute.gov.uk">ihr@argyll-bute.gov.uk</a></p>
+                    <p><strong>HR Online Support:</strong> <a href="mailto:HRonline@argyll-bute.gov.uk">HRonline@argyll-bute.gov.uk</a></p>
+                    <p><strong>Working Together Team:</strong> <a href="mailto:workingtogether@argyll-bute.gov.uk">workingtogether@argyll-bute.gov.uk</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p><strong>Argyll & Bute Council</strong> - Kilmory, Lochgilphead PA31 8RT</p>
+            <p>Powered by Humley Conversational AI | <a href="https://mycouncilworks.co.uk">My Council Works</a></p>
+            <p>&copy; 2025 Argyll & Bute Council. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Humley Chat Widget -->
+    <script src="https://channels.humley.com/widget/2/humley-chat.js"></script>
+    <humley-chat-widget 
+        id="7714" 
+        project="104E212B-8C39-48F1-99B7-44C5AC40DAA2" 
+        username="BNLCURcytVVF9uLMwBNp" 
+        password="aILZKk32DTFDOzJU5vBs">
+    </humley-chat-widget>
+
+    <script>
+        var customizationProperties = {
+            "errorText": "Sorry, there has been an issue. Please try again.",
+            "placeholder": "How can I help with your HR question?",
+            "widgetColour": "#1e3a8a",
+            "widgetIconColour": "#ffffff",
+            "brandHeaderTextColour": "#fff",
+            "brandHeaderBackground": "#1e3a8a",
+            "brandDescription": "Argyll & Bute\nConversational AI Assistant for HR",
+            "headerTitleText": "Argyll & Bute HR Assistant",
+            "widgetBorderRadius": "12px",
+            "backgroundColour": "#fff",
+            "chatLoadingColour": "#1e3a8a",
+            "loadingColour": "#1e3a8a",
+            "botBackgroundColour": "#f1f5f9",
+            "botTextColour": "#1e293b",
+            "userBackgroundColour": "#1e3a8a",
+            "userTextColour": "#FFF",
+            "buttonTextColour": "#1e3a8a",
+            "feedbackYesText": "Yes",
+            "feedbackNoText": "No",
+            "inputBackgroundColour": "#f8fafc",
+            "inputTextColour": "#1e293b",
+            "sendButtonColour": "#1e3a8a",
+            "sendButtonDisabledColour": "#e2e8f0",
+            "widgetDefaultOpen": true,
+            "mode": "widget",
+            "fontFamily": "inherit"
+        };
+        
+        // Wait for the widget to load
+        document.addEventListener('DOMContentLoaded', function() {
+            var widget = document.querySelector("humley-chat-widget");
+            if (widget) {
+                widget.widgetCustomisationsOverides = customizationProperties;
+            }
+        });
+    </script>
+</body>
+</html>
